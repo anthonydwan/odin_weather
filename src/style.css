@@ -1,1 +1,10 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+body {
+  background: black;
+}
+
+svg {
+  height: 100px;
+  width: 100px;
+  color: red;
+}
+/*# sourceMappingURL=style.css.map */
