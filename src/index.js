@@ -1,6 +1,7 @@
 
 import 'regenerator-runtime/runtime';
 import getWeatherIcon from './icons'; 
+import './style.css';
 
 const systemModule = (() => {
     let unitObject = {
@@ -27,11 +28,10 @@ const displayModule = (() => {
         console.log(weatherData)
         changeLocationName(weatherData)
         changeMainTemp(weatherData)
-        changeHighLowTemp(weatherData)
-        changeFeelsLike(weatherData)
         changeHumidity(weatherData)
         changeWeatherIcon(weatherData)
         changeWeatherName(weatherData)
+        changeWind(weatherData)
     }
 
     const changeLocationName = (weatherData) =>{
@@ -41,22 +41,17 @@ const displayModule = (() => {
 
     const changeMainTemp = (weatherData) => {
         const mainTemp = document.querySelector("#mainTemp")
-        mainTemp.textContent = weatherData.main["temp"]
-    }
-
-    const changeHighLowTemp = (weatherData) => {
-        const highLowTemp = document.querySelector("#highLowTemp")
-        highLowTemp.textContent = `${weatherData.main["temp_min"]} - ${weatherData.main["temp_max"]}` 
-    }
-
-    const changeFeelsLike = (weatherData) => {
-        const feelsLike = document.querySelector("#feelsLike")
-        feelsLike.textContent = `Feels like: ${weatherData.main["feels_like"]}`
+        mainTemp.textContent = `${weatherData.main["temp"]}\u00B0`
     }
 
     const changeHumidity = (weatherData) => {
         const humidity = document.querySelector("#humidity")
         humidity.textContent = `Humidity: ${weatherData.main["humidity"]}%`
+    }
+
+    const changeWind = (weatherData) => {
+        const wind = document.querySelector("#wind")
+        wind.textContent = `Wind: ${weatherData.wind["speed"]}`
     }
 
     const changeWeatherIcon = (weatherData) => {
