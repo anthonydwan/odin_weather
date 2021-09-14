@@ -1,14 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
 html,
 body {
   width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 18px;
+  font-size: 3.5vw;
+  font-family: "Inter", sans-serif;
+  color: white;
+  background-color: rgb(0, 3, 32);
 }
 
-p{
-    margin: 0;
+svg {
+  fill: white;
+}
+
+p {
+  margin: 0;
+}
+
+#largeContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 15vw 60vw 10vw;
+}
+
+#searchdiv {
+  width: 100%;
+  height: 100%;
+}
+
+#searchborder {
+  display: flex;
+  margin: 5vw auto 0 auto;
+  width: 50vw;
+  max-width: 450px;
+  height: 34px;
+  border: none;
+  background-color: grey;
+  border-radius: 30px;
+  align-items: center;
+
+  svg {
+    display: inline-block;
+    margin-left: 3%;
+  }
+}
+
+#search {
+  width: 70%;
+  height: 30px;
+  border: none;
+  background-color: grey;
+  outline: none;
 }
 
 #container {
@@ -16,7 +61,7 @@ p{
   display: grid;
   width: 80vw;
   grid-template-columns: 1.5fr 1fr;
-  grid-template-rows: 100px 140px;
+  grid-template-rows: 15vw 35vw;
   grid-template-areas:
     "location location"
     "weather other";
@@ -28,20 +73,26 @@ p{
   grid-area: location;
   text-align: center;
   font-size: x-large;
+  font-weight: 500;
+
+  p {
+    font-size: 10vw;
+    font-weight: 800;
+  }
 }
 
 #weatherIcon {
+  height: 75%;
   svg {
     display: block;
     margin: 0 auto;
-    height: 120px;
-    width: 120px;
+    height: 100%;
   }
 }
 
 #weatherName {
   text-align: center;
-  font-size: 18px;
+  font-size: 5vw;
 }
 
 #infoGrid {
@@ -49,16 +100,45 @@ p{
   grid-template-columns: 1fr 2fr;
   grid-template-rows: repeat(1, 1fr);
   width: 100%;
-  justify-content: left;
+  text-align: center;
   align-items: center;
 
   svg {
     display: inline;
-    height: 40px;
-    width: 40px;
+    height: 100%;
+    width: 100%;
   }
 
-  p{
-      width: 60px;
+  p {
+    width: 90px;
   }
+}
+
+#buttons {
+  margin: 2vw auto 0 auto;
+  width: 22vw;
+  max-width: 200px;
+
+  button {
+    font-size: 3vw;
+    padding: 2vw 4vw;
+    border: 0.5vw solid white;
+    background-color: transparent;
+    color: white;
+  }
+
+  .active {
+    background-color: white;
+    color: rgb(0, 3, 32);
+  }
+}
+
+#celciusB {
+  border-bottom-left-radius: 5vw;
+  border-top-left-radius: 5vw;
+}
+
+#fahrenheitB {
+  border-bottom-right-radius: 5vw;
+  border-top-right-radius: 5vw;
 }
