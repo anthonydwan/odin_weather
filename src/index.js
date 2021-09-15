@@ -5,13 +5,9 @@ import "./style.css";
 const systemModule = (() => {
   let unitType = "metric";
   let location = "London";
-  const search = document.querySelector("#search")
+  const search = document.querySelector("#search");
+  const warning = document.querySelector("#warning");
 
-  search.addEventListener("submit", function(){
-      location = search.value
-      console.log(search.value)
-      displayModule.printWeatherData(location)
-  })
 
   let unitObject = {
     metric: {
@@ -24,8 +20,31 @@ const systemModule = (() => {
     },
   };
 
+  const checkValidCity = (weatherData) => {
+    if (weatherData.cod === "404") {
+        console.log(warning)
+      warning.classList.add("warningActive");
+      return false;
+    } else {
+      warning.classList.remove("warningActive");
+      return true;
+    }
+  };
+
+  window.addEventListener("keydown", async function (e) {
+    if (e.key === "Enter") {
+      const weatherData = await getWeather(search.value);
+      const validity = await checkValidCity(weatherData);
+      if (validity) {
+        location = search.value;
+        displayModule.printWeatherData(location);
+      } 
+      search.value = "";
+      await console.log(search.value);
+    }
+  });
+
   const changeUnits = (mode = "metric") => {
-    console.log("hi");
     if (mode === "metric" || mode === "imperial") {
       unitType = mode;
     }
@@ -76,7 +95,9 @@ const displayModule = (() => {
 
   const changeMainTemp = (weatherData) => {
     const mainTemp = document.querySelector("#mainTemp");
-    mainTemp.textContent = `${weatherData.main["temp"]}\u00B0${systemModule.unitObject[systemModule.unitType]["tempUnit"]}`;
+    mainTemp.textContent = `${weatherData.main["temp"]}\u00B0${
+      systemModule.unitObject[systemModule.unitType]["tempUnit"]
+    }`;
   };
 
   const changeHumidity = (weatherData) => {
@@ -107,13 +128,13 @@ const displayModule = (() => {
   celciusB.addEventListener("click", function () {
     systemModule.changeUnits("metric");
     printWeatherData(systemModule.location);
-    activeButton()
+    activeButton();
   });
 
   fahrenheitB.addEventListener("click", function () {
     systemModule.changeUnits("imperial");
     printWeatherData(systemModule.location);
-    activeButton()
+    activeButton();
   });
 
   const activeButton = () => {
@@ -128,8 +149,7 @@ const displayModule = (() => {
 
   printWeatherData(systemModule.location);
   activeButton();
-  return{
-      printWeatherData
-  }
-
+  return {
+    printWeatherData,
+  };
 })();
